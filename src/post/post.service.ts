@@ -1,9 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { Post } from './entities/post.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PostService {
+
+  constructor(
+    @Inject('POST_REPOSITORY')
+    private photoRepository: Repository<Post>,
+  ) {}
+
   create(createPostDto: CreatePostDto) {
     return 'This action adds a new post';
   }
